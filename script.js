@@ -3,22 +3,27 @@ window.onload = function getBlackColor() {
   getBlack.classList.add('selected');
 };
 
+let pixelTableSize = 5;
+const clearButton = document.querySelector('#clear-board');
+const boardButton = document.querySelector('#generate-board');
+
 function colorGenerator() {
   const red = Math.floor(Math.random() * 255);
   const blue = Math.floor(Math.random() * 255);
   const green = Math.floor(Math.random() * 255);
-  const finalColor = 'rgb(' + red + ', ' + blue + ', ' + green + ')';
+  const finalColor = `rgb(${red}, ${blue}, ${green})`;
   return finalColor;
 }
 
 function colorPalete() {
-  const palete = document.createElement('section');
+  const white = document.createElement('div');
   const black = document.createElement('div');
   const color1 = document.createElement('div');
   const color2 = document.createElement('div');
   const color3 = document.createElement('div');
-  palete.id = 'color-palette';
-  document.querySelector('body').appendChild(palete);
+  white.className = 'color';
+  white.id = 'white';
+  white.style.backgroundColor = 'white';
   black.className = 'color';
   black.id = 'black';
   black.style.backgroundColor = 'black';
@@ -29,49 +34,13 @@ function colorPalete() {
   color3.className = 'color';
   color3.style.backgroundColor = colorGenerator();
   document.querySelector('#color-palette').appendChild(black);
+  document.querySelector('#color-palette').appendChild(white);
   document.querySelector('#color-palette').appendChild(color1);
   document.querySelector('#color-palette').appendChild(color2);
   document.querySelector('#color-palette').appendChild(color3);
 }
 
 colorPalete();
-
-let pixelTableSize = 5;
-
-const buttonSection = document.createElement('section');
-document.querySelector('body').appendChild(buttonSection);
-
-function createClearButton() {
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.id = 'clear-board';
-  button.innerText = 'Limpar';
-  buttonSection.appendChild(button);
-  button.addEventListener('click', clearPixelTable);
-}
-
-createClearButton();
-
-function createInput() {
-  const input = document.createElement('input');
-  input.type = 'number';
-  input.id = 'board-size';
-  input.min = 1;
-  buttonSection.appendChild(input);
-}
-
-createInput();
-
-function generateBoardButton() {
-  const boardButton = document.createElement('button');
-  boardButton.type = 'button';
-  boardButton.id = 'generate-board';
-  boardButton.innerText = 'VQV';
-  buttonSection.appendChild(boardButton);
-  boardButton.addEventListener('click', createPixelsAsk);
-}
-
-generateBoardButton();
 
 function createPixelsAsk() {
   const inputValue = document.querySelector('input').value;
@@ -95,7 +64,7 @@ function createPixelsAsk() {
 }
 
 function createPixelBoard() {
-  const getBody = document.querySelector('body');
+  const getBody = document.querySelector('#button-section');
   const pixelBoard = document.createElement('section');
   pixelBoard.id = 'pixel-board';
   getBody.appendChild(pixelBoard);
@@ -155,3 +124,6 @@ function clearPixelTable() {
     getPixel[index].style.backgroundColor = '';
   }
 }
+
+clearButton.addEventListener('click', clearPixelTable);
+boardButton.addEventListener('click', createPixelsAsk);

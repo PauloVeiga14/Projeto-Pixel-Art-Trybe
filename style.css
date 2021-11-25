@@ -1,5 +1,6 @@
 body {
   background: lightblue;
+  text-align: center;
 }
 
 .color {
@@ -30,7 +31,10 @@ body {
   text-align: center;
 }
 
-/* Os displays table-cell e table foram feitos com a ajuda da resposta no seguinte link https://stackoverflow.com/questions/29229523/how-and-why-to-use-display-table-cell-css  */
+/* Os displays table-cell e table foram feitos com a ajuda da resposta no
+seguinte link https://stackoverflow.com/questions/
+29229523/how-and-why-to-use-display-table-cell-css  */
+
 .pixel {
   width: 40px;
   height: 40px;
@@ -43,4 +47,5 @@ body {
   display: table;
   padding: 0;
   border: 1px solid black;
+  margin: auto;
 }
